@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="Ivanov Nikita">
+    <test name="Test">
+        <groups>
+        </groups>
+        <classes>
+            <class name="TestAllure"/>
+        </classes>
+
+    </test>
+    <listeners>
+        <listener class-name="liseners.MyLisener"></listener>
+    </listeners>
+</suite>
