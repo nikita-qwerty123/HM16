@@ -26,7 +26,7 @@ public class DriverConfig {
                     break;
                 case CHROMEINCOGNITO : createChrome();break;
                 case FIREFOX : ctreateFirefox();break;
-                case CHROMEWITHPROXY : createChromeProxy();break;
+//                case CHROMEWITHPROXY : createChromeProxy();break;
             }
         }
         return driver;
@@ -55,39 +55,39 @@ public class DriverConfig {
 
     }
 
-    private static void createChromeProxy() {
-
-
-        BrowserMobProxyServer server = new BrowserMobProxyServer();
-        server.enableHarCaptureTypes(CaptureType.REQUEST_CONTENT, CaptureType.RESPONSE_CONTENT);
-
-        server.setTrustAllServers(true);
-        server.start();
-        //
-        BaseProxy.serverBase=server;
-
-
-        Proxy seleniumProxy = ClientUtil.createSeleniumProxy(server);
-        String hostIp = null;
-        try {
-            hostIp = Inet4Address.getLocalHost().getHostAddress();
-        } catch (UnknownHostException e) {
-            throw new RuntimeException(e);
-        }
-        seleniumProxy.setHttpProxy(hostIp + ":" + server.getPort());
-        seleniumProxy.setSslProxy(hostIp + ":" + server.getPort());
-
-
-        DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability(CapabilityType.PROXY, seleniumProxy);
-        capabilities.setAcceptInsecureCerts(true);
-
-
-        ChromeOptions options = new ChromeOptions();
-        options.merge(capabilities);
-        driver = new ChromeDriver(options);
-
-    }
+//    private static void createChromeProxy() {
+//
+//
+//        BrowserMobProxyServer server = new BrowserMobProxyServer();
+//        server.enableHarCaptureTypes(CaptureType.REQUEST_CONTENT, CaptureType.RESPONSE_CONTENT);
+//
+//        server.setTrustAllServers(true);
+//        server.start();
+//        //
+//        BaseProxy.serverBase=server;
+//
+//
+//        Proxy seleniumProxy = ClientUtil.createSeleniumProxy(server);
+//        String hostIp = null;
+//        try {
+//            hostIp = Inet4Address.getLocalHost().getHostAddress();
+//        } catch (UnknownHostException e) {
+//            throw new RuntimeException(e);
+//        }
+//        seleniumProxy.setHttpProxy(hostIp + ":" + server.getPort());
+//        seleniumProxy.setSslProxy(hostIp + ":" + server.getPort());
+//
+//
+//        DesiredCapabilities capabilities = new DesiredCapabilities();
+//        capabilities.setCapability(CapabilityType.PROXY, seleniumProxy);
+//        capabilities.setAcceptInsecureCerts(true);
+//
+//
+//        ChromeOptions options = new ChromeOptions();
+//        options.merge(capabilities);
+//        driver = new ChromeDriver(options);
+//
+//    }
 
 }
 
